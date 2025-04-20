@@ -8,18 +8,22 @@ jobs:
   cypress-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        
+      - uses: actions/checkout@v3
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # or your preferred version
+          
       - name: Install dependencies
+        working-directory: ./ui-tests
         run: |
-          cd ui-tests
           npm install
+          npm install cypress --save-dev
           
       - name: Run Cypress tests
-        run: |
-          cd ui-tests
-          npx cypress run
+        working-directory: ./ui-tests
+        run: npx cypress run
 
   api-tests:
     runs-on: ubuntu-latest
