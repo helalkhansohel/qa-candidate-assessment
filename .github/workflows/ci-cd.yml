@@ -61,16 +61,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install k6 
+      - name: Install k6
         run: |
           sudo apt-get update
-          sudo apt-get install -y ca-certificates gnupg2 dirmngr
-          sudo mkdir -p /etc/apt/keyrings
-          sudo gpg --no-default-keyring --keyring /etc/apt/keyrings/k6-archive-keyring.gpg --batch --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D78C6C76840E5B984
-          echo "deb [signed-by=/etc/apt/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
-          sudo apt-get update
-          sudo apt-get install -y k6
+          sudo apt-get install -y ca-certificates curl
+          curl -LO https://dl.k6.io/deb/pool/main/k/k6/$(curl -s https://dl.k6.io/deb/dists/stable/main/binary-amd64/Packages | grep "Filename:" | head -1 | awk '{print $2}')
+          sudo dpkg -i k6_*.deb || sudo apt-get install -f -y
 
-      - name: Run performance tests
+      - name: Run tests
         working-directory: ./performance-tests
         run: k6 run order-creation-test.js
