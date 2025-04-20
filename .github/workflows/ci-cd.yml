@@ -13,7 +13,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # or your preferred version
+          node-version: '18'  
           
       - name: Install dependencies
         working-directory: ./ui-tests
@@ -56,24 +56,20 @@ jobs:
          path: api-test-results/newman-results.json
 
   performance-tests:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: api-tests
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Install k6 via Chocolatey
-        shell: pwsh
+      - name: Install k6
         run: |
-          choco upgrade chocolatey -y
-          choco install k6 -y
-          echo "C:\ProgramData\chocolatey\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          sudo apt-get update
+          sudo apt-get install -y ca-certificates gnupg2
+          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D78C6C76840E5B984
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install -y k6
 
-      - name: Verify k6 installation
-        shell: pwsh
-        run: k6 version
-
-      - name: Run performance tests
+      - name: Run tests
         working-directory: ./performance-tests
-        shell: pwsh
-        run: k6 run order-creation-test.js
+        run: k6 run order-creation-test.js 
