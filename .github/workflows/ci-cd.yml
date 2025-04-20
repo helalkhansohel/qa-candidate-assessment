@@ -56,19 +56,30 @@ jobs:
          path: api-test-results/newman-results.json
 
   performance-tests:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest  
     needs: api-tests
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
-      - name: Install k6 (updated method)
+
+      - name: Install Chocolatey
+        shell: pwsh
         run: |
-          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D78C6C76840E5B984
-          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
-          sudo apt-get update
-          sudo apt-get install k6
-          
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+          iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+          $env:Path += ";$env:ALLUSERSPROFILE\chocolatey\bin"
+          echo "::add-path::$env:ALLUSERSPROFILE\chocolatey\bin"
+
+      - name: Install k6 via Chocolatey
+        shell: pwsh
+        run: choco install k6 -y
+
+      - name: Verify k6 installation
+        shell: pwsh
+        run: k6 version
+
       - name: Run performance tests
         working-directory: ./performance-tests
+        shell: pwsh
         run: k6 run order-creation-test.js
