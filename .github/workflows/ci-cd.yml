@@ -56,24 +56,18 @@ jobs:
          path: api-test-results/newman-results.json
 
   performance-tests:
-    runs-on: windows-latest  
+    runs-on: windows-latest
     needs: api-tests
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install Chocolatey
-        shell: pwsh
-        run: |
-          Set-ExecutionPolicy Bypass -Scope Process -Force
-          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-          iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-          $env:Path += ";$env:ALLUSERSPROFILE\chocolatey\bin"
-          echo "::add-path::$env:ALLUSERSPROFILE\chocolatey\bin"
-
       - name: Install k6 via Chocolatey
         shell: pwsh
-        run: choco install k6 -y
+        run: |
+          choco upgrade chocolatey -y
+          choco install k6 -y
+          echo "C:\ProgramData\chocolatey\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Verify k6 installation
         shell: pwsh
