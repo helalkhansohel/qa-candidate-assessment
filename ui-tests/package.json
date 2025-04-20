@@ -1,0 +1,26 @@
+{
+  "name": "ui-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.27.0",
+    "@cypress/webpack-preprocessor": "^6.0.4",
+    "@cypress/xpath": "^2.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
+    "@typescript-eslint/parser": "^8.29.1",
+    "cypress": "^14.3.0",
+    "eslint": "^9.24.0",
+    "eslint-plugin-cypress": "^4.2.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,361 @@
+{
+	"info": {
+		"_postman_id": "91ca18c1-ae73-4c9a-882b-55b27a8e6aa0",
+		"name": "api-tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44229591",
+		"_collection_link": "https://helalkhan-5722622.postman.co/workspace/Helal-Khan's-Workspace~2e1a028b-909f-406d-8593-1629b87f76b9/collection/44229591-91ca18c1-ae73-4c9a-882b-55b27a8e6aa0?action=share&source=collection_link&creator=44229591"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register new customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Verify Status code is 201\r",
+									"pm.test(\"Verify Status code is 201\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"//Verify response has access token\r",
+									"pm.test(\"Verify response has access token\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.accessToken).to.exist;\r",
+									"});\r",
+									"\r",
+									"// Store the access token in environment\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token\", jsonData.accessToken)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Creating a uniqueId with the time timestap, which will be user for creating unique email address \r",
+									"const timestamp = new Date().getTime();\r",
+									"const randomSuffix = Math.floor(Math.random() * 1000);\r",
+									"const uniqueId = `${timestamp}${randomSuffix}`;\r",
+									"\r",
+									"pm.environment.set(\"uniqueId\", uniqueId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"clientName\": \"Helal Khan\",\r\n   \"clientEmail\": \"HelalTestEmail1{{uniqueId}}@gamil.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api-clients",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api-clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Retrieve product list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Verify status code is 200\r",
+									"pm.test(\"Verify status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Verify response is an array of products\r",
+									"pm.test(\"Verify response is an array of products\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"// Verify each product has required fields\r",
+									"pm.test(\"Each product has required fields\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    jsonData.forEach(function(product) {\r",
+									"        pm.expect(product.id).to.exist;\r",
+									"        pm.expect(product.category).to.exist;\r",
+									"        pm.expect(product.name).to.exist;\r",
+									"        pm.expect(product.inStock).to.exist;\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Create new cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Verify status code is 201\r",
+									"pm.test(\"Verify status code is 201\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"//Verify response has cartId\r",
+									"pm.test(\"Verify response has cartId\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.cartId).to.exist;\r",
+									"    pm.expect(jsonData.created).to.be.true;\r",
+									"});\r",
+									"\r",
+									"// Store cartId in environment\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"cart_id\", jsonData.cartId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/carts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add products to cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Verify status code is 201\r",
+									"pm.test(\"Verify status code is 201\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"//Verify responses\r",
+									"pm.test(\"Verify response has cartId\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.itemId).to.exist;\r",
+									"    pm.expect(jsonData.created).to.be.true;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productId\": 4643\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/carts/{{cart_id}}/items",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"carts",
+								"{{cart_id}}",
+								"items"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Order products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code is 201\r",
+									"pm.test(\"Verify Status code is 201\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"// Verify response has orderId\r",
+									"pm.test(\"Verify response has orderId\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.orderId).to.exist;\r",
+									"});\r",
+									"\r",
+									"// Store orderId in environment\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"order_id\", jsonData.orderId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cartId\": \"{{cart_id}}\",\r\n    \"customerName\": \"Test Customer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/orders",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify order details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code is 200\r",
+									"pm.test(\"Verify Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Verify order details\r",
+									"pm.test(\"Verify Order details are correct\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.equal(pm.environment.get(\"order_id\"));\r",
+									"    pm.expect(jsonData.customerName).to.equal(\"Test Customer\");\r",
+									"    pm.expect(jsonData.items).to.be.an('array');\r",
+									"    pm.expect(jsonData.items.length).to.be.at.least(1);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/orders/{{order_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"orders",
+								"{{order_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
