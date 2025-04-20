@@ -14,38 +14,42 @@ export const options = {
       executor: 'ramping-vus',
       startVUs: 1,
       stages: [
-        { duration: '3s', target: 1 }, // 30s -10
-        { duration: '1s', target: 5 }, // 1m -50
-        { duration: '3s', target: 1 }, // 30s - 100
+        { duration: '5s', target: 5 }, 
+        { duration: '10s', target: 10 }, 
+        { duration: '5s', target: 1 }, 
       ],
-      gracefulRampDown: '3s', //30s
+      gracefulRampDown: '5s', 
       exec: 'rampUpScenario',
     },
     sustained: {
       executor: 'constant-vus',
-      vus: 5, //50
-      duration: '5s',// 5m
+      vus: 5, 
+      duration: '15s',
       exec: 'sustainedScenario',
-      startTime: '3s',  //3m
+      startTime: '3s',  
     },
     spike: {
       executor: 'ramping-vus',
       startVUs: 0,
       stages: [
-        { duration: '1s', target: 1 }, //1m - 200
-        { duration: '1s', target: 1 }, //1m - 50
+        { duration: '2s', target: 3 }, 
+        { duration: '2s', target: 2 }, 
       ],
-      gracefulRampDown: '3s', //30s
+      gracefulRampDown: '3s', 
       exec: 'spikeScenario',
-      startTime: '3s', //9m
+      startTime: '5s', 
     },
     soak: {
       executor: 'constant-vus',
-      vus: 2, //20
-      duration: '1s',//1h
+      vus: 1, 
+      duration: '15s',
       exec: 'soakScenario',
-      startTime: '3s', //12m
+      startTime: '5s', 
     },
+  },
+  thresholds: {
+    http_req_duration: ['p(50)<10000'], 
+    http_req_failed: ['rate<5'],  
   },
 
 };
