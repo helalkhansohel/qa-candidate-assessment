@@ -32,7 +32,7 @@ cd ..
 ```  
 8.	 Finally, to install K6 for performance testing, put below command in the same VS code terminal:  
 ```bash  
-&nbsp;&nbsp; winget install k6 --source winget  
+winget install k6 --source winget  
 ```    
 9. Close and open the VS code IDE.  
 
@@ -41,52 +41,52 @@ cd ..
 &nbsp;&nbsp;a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
 &nbsp;&nbsp;b.	Execute below command in VS code terminal:  
 ```bash  
-&nbsp;&nbsp;&nbsp;&nbsp; cd ui-tests  
-&nbsp;&nbsp;&nbsp;&nbsp; npx cypress run      // To run headless  
-&nbsp;&nbsp;or  
-&nbsp;&nbsp;&nbsp;&nbsp; npx cypress open   // To run on web browser   
+cd ui-tests  
+npx cypress run      // To run headless  
+or  
+npx cypress open   // To run on web browser   
 ```   
 &nbsp;&nbsp;c.	To see report, give below command:  
 ```bash  
-&nbsp;&nbsp;&nbsp;&nbsp;cypress/reports/mochawesome.html 
+cypress/reports/mochawesome.html 
 ```    
 &nbsp;&nbsp;d.	Go back to root directory by below command:  
 ```bash    
-&nbsp;&nbsp;&nbsp;&nbsp;cd ..  
+cd ..  
 ```  
 2.	API automation test with Newman:  
 &nbsp;&nbsp;a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
 &nbsp;&nbsp;b.	To run the api test, execute below command in vs code terminal:  
 ```bash  
-&nbsp;&nbsp;&nbsp;&nbsp; cd api-tests  
-&nbsp;&nbsp;&nbsp;&nbsp; npx newman run .\collection\api-tests.postman_collection.json -e .\collection\Grocery-Store-Env.postman_environment.json -n 1  
+cd api-tests  
+npx newman run .\collection\api-tests.postman_collection.json -e .\collection\Grocery-Store-Env.postman_environment.json -n 1  
 ```  
 &nbsp;&nbsp;c.	To generate report, execute below command in vs code terminal: 
 ```bash   
-&nbsp;&nbsp;&nbsp;&nbsp;npm test  
+npm test  
 ```  
 &nbsp;&nbsp;d.	To see the report in the browser, run the below command in vs code terminal:  
 ```bash  
-&nbsp;&nbsp;&nbsp;&nbsp;Reports/report.html  
+Reports/report.html  
 ```  
 &nbsp;&nbsp;e.	Go back to root directory by below command in vs code terminal: 
 ```bash   
-&nbsp;&nbsp;&nbsp;&nbsp;cd ..  
+cd ..  
 ```  
 3.	Performance automation test with K6:  
 &nbsp;&nbsp;a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
 &nbsp;&nbsp;b.	To run the performance test Execute below command in VS code terminal: 
 ```bash   
-&nbsp;&nbsp;&nbsp;&nbsp;i) cd performance-tests  
-&nbsp;&nbsp;&nbsp;&nbsp;ii) k6 run order-creation-test.js  
+cd performance-tests  
+k6 run order-creation-test.js  
 ```  
 &nbsp;&nbsp;c.	To see the report in the browser , run the below command in VS code terminal:  
 ```bash  
-&nbsp;&nbsp;&nbsp;&nbsp;report/summary.html  
+report/summary.html  
 ```  
 &nbsp;&nbsp;d.	Go back to root directory by below command in VS code terminal: 
 ```bash     
-&nbsp;&nbsp;&nbsp;&nbsp;cd ..  
+cd ..  
 ```  
 
 # Note:   
