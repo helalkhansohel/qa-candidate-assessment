@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-04-17T16:12:10.007Z",
-    "end": "2025-04-17T16:12:14.677Z",
-    "duration": 4670,
+    "start": "2025-04-21T16:17:22.109Z",
+    "end": "2025-04-21T16:17:28.707Z",
+    "duration": 6598,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "945cc4e0-0dd0-40b8-b0f7-96f71aee849d",
+      "uuid": "fb4f7399-7bae-4a7b-aade-ec605cbe9492",
       "title": "",
       "fullFile": "cypress\\e2e\\tests\\TestProductPurchase.spec.ts",
       "file": "cypress\\e2e\\tests\\TestProductPurchase.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "e5ca23ca-64c9-4f6f-99bf-8ba260abf39e",
+          "uuid": "fadba072-583a-4edc-9d82-b923a115f122",
           "title": "Verify lowest & highest priced product putchase",
           "fullFile": "",
           "file": "",
@@ -35,32 +35,32 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "should identify and add the lowest & highest priced products finally checkout",
-              "fullTitle": "Verify lowest & highest priced product putchase should identify and add the lowest & highest priced products finally checkout",
+              "title": "should add the lowest & highest priced products to cart then checkout",
+              "fullTitle": "Verify lowest & highest priced product putchase should add the lowest & highest priced products to cart then checkout",
               "timedOut": null,
-              "duration": 4154,
+              "duration": 6358,
               "state": "passed",
-              "speed": "fast",
+              "speed": "medium",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "//add the lowest & highest priced\nInventoryPage_1.default.sortProductsByPrice('Price (low to high)');\nInventoryPage_1.default.addFirstProductToCart(); // Add lowest priced product\nInventoryPage_1.default.sortProductsByPrice('Price (high to low)');\nInventoryPage_1.default.addFirstProductToCart(); // Add highest priced product\n//Checkout\nCartPage_1.default.gotoMyCart();\nCartPage_1.default.doCheckout();\nCheckoutPage_1.default.fillUserInformation(storage_json_1.default.standard_user.fastname, storage_json_1.default.standard_user.lastname, storage_json_1.default.standard_user.postalcode);\nCheckoutPage_1.default.clickContinueButton();\nCheckoutPage_1.default.verifySelectedProducts(storage_json_1.default.products.lowestPricedProduct, storage_json_1.default.products.highestPricedProduct);\nCheckoutPage_1.default.clickFinishButton();\nCheckoutPage_1.default.VerifyProductOrderSuccessful('Thank you for your order!');",
+              "code": "//add the lowest & highest priced\nInventoryPage_1.default.sortProductsByPrice('Price (low to high)');\nInventoryPage_1.default.addFirstProductToCart(); // Add lowest priced product\nInventoryPage_1.default.sortProductsByPrice('Price (high to low)');\nInventoryPage_1.default.addFirstProductToCart(); // Add highest priced product\n//Checkout\nCartPage_1.default.gotoMyCart();\nCartPage_1.default.clickCheckout();\nCheckoutPage_1.default.fillUserInformation(storage_json_1.default.standard_user.fastname, storage_json_1.default.standard_user.lastname, storage_json_1.default.standard_user.postalcode);\nCheckoutPage_1.default.clickContinueButton();\nCheckoutPage_1.default.verifySelectedProducts(storage_json_1.default.products.lowestPricedProduct, storage_json_1.default.products.highestPricedProduct);\nCheckoutPage_1.default.clickFinishButton();\nCheckoutPage_1.default.VerifyProductOrderSuccessful('Thank you for your order!');",
               "err": {},
-              "uuid": "ef99d511-85e2-4aa3-b145-b9ace649fc98",
-              "parentUUID": "e5ca23ca-64c9-4f6f-99bf-8ba260abf39e",
+              "uuid": "8e2ccfdd-f279-4db3-95ad-361487546c7b",
+              "parentUUID": "fadba072-583a-4edc-9d82-b923a115f122",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "ef99d511-85e2-4aa3-b145-b9ace649fc98"
+            "8e2ccfdd-f279-4db3-95ad-361487546c7b"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 4154,
+          "duration": 6358,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
