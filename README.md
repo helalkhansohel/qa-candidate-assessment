@@ -4,11 +4,11 @@ This repository contains my submission for the QA home assessment. It demonstrat
 
 # Project Structure:
 qa-candidate-assessment/   
-&nbsp;&nbsp;->ui-tests/ # UI automation tests using Cypress  
-&nbsp;&nbsp;->api-tests/ # API automation tests using Postman  
-&nbsp;&nbsp;->performance-tests/ # Performance tests using Grafana k6  
-&nbsp;&nbsp;->.github/workflows/ # GitHub Actions CI/CD configuration  
-&nbsp;&nbsp;->README.md # This file  
+&nbsp;&nbsp;--ui-tests/ # UI automation tests using Cypress  
+&nbsp;&nbsp;--api-tests/ # API automation tests using Postman  
+&nbsp;&nbsp;--performance-tests/ # Performance tests using Grafana k6  
+&nbsp;&nbsp;--.github/workflows/ # GitHub Actions CI/CD configuration  
+&nbsp;&nbsp;--README.md # This file  
 
 # Prerequisites:
 1.	Install VS code IDE
@@ -46,11 +46,11 @@ npx cypress run      // To run headless
 or  
 npx cypress open   // To run on web browser   
 ```   
-c.	To see report, give below command:  
+&nbsp;&nbsp;&nbsp;&nbsp;c.	To see report, give below command:  
 ```bash  
 cypress/reports/mochawesome.html 
 ```    
-d.	Go back to root directory by below command:  
+&nbsp;&nbsp;&nbsp;&nbsp;d.	Go back to root directory by below command:  
 ```bash    
 cd ..  
 ```  
@@ -61,15 +61,15 @@ b.	To run the api test, execute below command in vs code terminal:
 cd api-tests  
 npx newman run .\collection\api-tests.postman_collection.json -e .\collection\Grocery-Store-Env.postman_environment.json -n 1  
 ```  
-c.	To generate report, execute below command in vs code terminal: 
+&nbsp;&nbsp;&nbsp;&nbsp;c.	To generate report, execute below command in vs code terminal: 
 ```bash   
 npm test  
 ```  
-d.	To see the report in the browser, run the below command in vs code terminal:  
+&nbsp;&nbsp;&nbsp;&nbsp;d.	To see the report in the browser, run the below command in vs code terminal:  
 ```bash  
 Reports/report.html  
 ```  
-e.	Go back to root directory by below command in vs code terminal: 
+&nbsp;&nbsp;&nbsp;&nbsp;e.	Go back to root directory by below command in vs code terminal: 
 ```bash   
 cd ..  
 ```  
@@ -80,11 +80,11 @@ b.	To run the performance test Execute below command in VS code terminal:
 cd performance-tests  
 k6 run order-creation-test.js  
 ```  
-c.	To see the report in the browser , run the below command in VS code terminal:  
+&nbsp;&nbsp;&nbsp;&nbsp;c.	To see the report in the browser , run the below command in VS code terminal:  
 ```bash  
 report/summary.html  
 ```  
-d.	Go back to root directory by below command in VS code terminal: 
+&nbsp;&nbsp;&nbsp;&nbsp;d.	Go back to root directory by below command in VS code terminal: 
 ```bash     
 cd ..  
 ```  
