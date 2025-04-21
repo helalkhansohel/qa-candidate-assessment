@@ -4,11 +4,11 @@ This repository contains my submission for the QA home assessment. It demonstrat
 
 # Project Structure:
 qa-candidate-assessment/   
-&nbsp;&nbsp;ui-tests/ # UI automation tests using Cypress  
-&nbsp;&nbsp;api-tests/ # API automation tests using Postman  
-&nbsp;&nbsp;performance-tests/ # Performance tests using Grafana k6  
-&nbsp;&nbsp;.github/workflows/ # GitHub Actions CI/CD configuration  
-&nbsp;&nbsp;README.md # This file  
+&nbsp;&nbsp;->ui-tests/ # UI automation tests using Cypress  
+&nbsp;&nbsp;->api-tests/ # API automation tests using Postman  
+&nbsp;&nbsp;->performance-tests/ # Performance tests using Grafana k6  
+&nbsp;&nbsp;->.github/workflows/ # GitHub Actions CI/CD configuration  
+&nbsp;&nbsp;->README.md # This file  
 
 # Prerequisites:
 1.	Install VS code IDE
@@ -38,53 +38,53 @@ winget install k6 --source winget
 
 # Steps to Run the tests:
 1.	UI automation test with Cypress:  
-&nbsp;&nbsp;a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
-&nbsp;&nbsp;b.	Execute below command in VS code terminal:  
+a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
+b.	Execute below command in VS code terminal:  
 ```bash  
 cd ui-tests  
 npx cypress run      // To run headless  
 or  
 npx cypress open   // To run on web browser   
 ```   
-&nbsp;&nbsp;c.	To see report, give below command:  
+c.	To see report, give below command:  
 ```bash  
 cypress/reports/mochawesome.html 
 ```    
-&nbsp;&nbsp;d.	Go back to root directory by below command:  
+d.	Go back to root directory by below command:  
 ```bash    
 cd ..  
 ```  
 2.	API automation test with Newman:  
-&nbsp;&nbsp;a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
-&nbsp;&nbsp;b.	To run the api test, execute below command in vs code terminal:  
+a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
+b.	To run the api test, execute below command in vs code terminal:  
 ```bash  
 cd api-tests  
 npx newman run .\collection\api-tests.postman_collection.json -e .\collection\Grocery-Store-Env.postman_environment.json -n 1  
 ```  
-&nbsp;&nbsp;c.	To generate report, execute below command in vs code terminal: 
+c.	To generate report, execute below command in vs code terminal: 
 ```bash   
 npm test  
 ```  
-&nbsp;&nbsp;d.	To see the report in the browser, run the below command in vs code terminal:  
+d.	To see the report in the browser, run the below command in vs code terminal:  
 ```bash  
 Reports/report.html  
 ```  
-&nbsp;&nbsp;e.	Go back to root directory by below command in vs code terminal: 
+e.	Go back to root directory by below command in vs code terminal: 
 ```bash   
 cd ..  
 ```  
 3.	Performance automation test with K6:  
-&nbsp;&nbsp;a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
-&nbsp;&nbsp;b.	To run the performance test Execute below command in VS code terminal: 
+a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
+b.	To run the performance test Execute below command in VS code terminal: 
 ```bash   
 cd performance-tests  
 k6 run order-creation-test.js  
 ```  
-&nbsp;&nbsp;c.	To see the report in the browser , run the below command in VS code terminal:  
+c.	To see the report in the browser , run the below command in VS code terminal:  
 ```bash  
 report/summary.html  
 ```  
-&nbsp;&nbsp;d.	Go back to root directory by below command in VS code terminal: 
+d.	Go back to root directory by below command in VS code terminal: 
 ```bash     
 cd ..  
 ```  
