@@ -17,53 +17,53 @@ qa-candidate-assessment/
 4.	Open the qa-candidate-assessment file with VS code IDE
 5.	Open the new terminal in VS code.
 6.	In vs code terminal give below commands one by one to install ui-test automation test dependency in Cypress.  
-a)	cd ui-tests    
-b)	npm install cypress typescript @cypress/webpack-preprocessor @babel/preset-typescript --save-dev  
-c)	npm install -D @cypress/xpath   
-d)	cd ..  
+&nbsp;&nbsp;a)	cd ui-tests    
+&nbsp;&nbsp;b)	npm install cypress typescript @cypress/webpack-preprocessor @babel/preset-typescript --save-dev  
+&nbsp;&nbsp;c)	npm install -D @cypress/xpath   
+&nbsp;&nbsp;d)	cd ..  
 7.	Now to install the api-test dependency for Newman, put below commands in the same VS code terminal:  
-a)	cd api-tests  
-b)	npm i newman  
-c)	npm i newman-reporter-htmlextra  
-d)	cd ..  
+&nbsp;&nbsp;a)	cd api-tests  
+&nbsp;&nbsp;b)	npm i newman  
+&nbsp;&nbsp;c)	npm i newman-reporter-htmlextra  
+&nbsp;&nbsp;d)	cd ..  
 8.	 Finally, to install K6 for performance testing, put below command in the same VS code terminal:  
-a)	winget install k6 --source winget  
-b)	cd ..  
-c)  Close and open the VS code IDE.  
+&nbsp;&nbsp;a)	winget install k6 --source winget  
+&nbsp;&nbsp;b)	cd ..  
+&nbsp;&nbsp;c)  Close and open the VS code IDE.  
 
 # Steps to Run the tests:
 1.	UI automation test with Cypress:  
-a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
-b.	Execute below command in VS code terminal:  
-    i) cd ui-tests  
-    ii) npx cypress run      // To run headless, execute below command in VS code terminal  
-    or  
-    ii) npx cypress open   // To run on browser, execute below command in VS code terminal  
-c.	To see report, give below command:  
-    cypress/reports/mochawesome.html   
-d.	Go back to root directory by below command:    
-    cd ..  
+&nbsp;&nbsp;a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
+&nbsp;&nbsp;b.	Execute below command in VS code terminal:  
+&nbsp;&nbsp;&nbsp;&nbsp;i) cd ui-tests  
+&nbsp;&nbsp;&nbsp;&nbsp;ii) npx cypress run      // To run headless  
+&nbsp;&nbsp;or  
+&nbsp;&nbsp;&nbsp;&nbsp;ii) npx cypress open   // To run on web browser
+&nbsp;&nbsp;c.	To see report, give below command:  
+&nbsp;&nbsp;&nbsp;&nbsp;cypress/reports/mochawesome.html   
+&nbsp;&nbsp;d.	Go back to root directory by below command:    
+&nbsp;&nbsp;&nbsp;&nbsp;cd ..  
 2.	API automation test with Newman:  
-a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
-b.	To run the api test, execute below command in vs code terminal:  
-    i) cd api-tests  
-    ii) npx newman run .\collection\api-tests.postman_collection.json -e .\collection\Grocery-Store-Env.postman_environment.json -n 1  
-c.	To generate report, execute below command in vs code terminal:  
-    npm test  
-d.	To see the report in the browser, run the below command in vs code terminal:  
-    Reports/report.html  
-e.	Go back to root directory by below command in vs code terminal:    
-    cd ..  
+&nbsp;&nbsp;a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
+&nbsp;&nbsp;b.	To run the api test, execute below command in vs code terminal:  
+&nbsp;&nbsp;&nbsp;&nbsp;i) cd api-tests  
+&nbsp;&nbsp;&nbsp;&nbsp;ii) npx newman run .\collection\api-tests.postman_collection.json -e .\collection\Grocery-Store-Env.postman_environment.json -n 1  
+&nbsp;&nbsp;c.	To generate report, execute below command in vs code terminal:  
+&nbsp;&nbsp;&nbsp;&nbsp;npm test  
+&nbsp;&nbsp;d.	To see the report in the browser, run the below command in vs code terminal:  
+&nbsp;&nbsp;&nbsp;&nbsp;Reports/report.html  
+&nbsp;&nbsp;e.	Go back to root directory by below command in vs code terminal:    
+&nbsp;&nbsp;&nbsp;&nbsp;cd ..  
 
 3.	Performance automation test with K6:  
-a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
-b.	To run the performance test Execute below command in VS code terminal:  
-    i) cd performance-tests  
-	ii) k6 run order-creation-test.js  
-c.	To see the report in the browser , run the below command in VS code terminal:  
-    report/summary.html  
-d.	Go back to root directory by below command in VS code terminal:    
-    cd ..  
+&nbsp;&nbsp;a.	Open the project in root directory (qa-candidate-assessment) with VS code.  
+&nbsp;&nbsp;b.	To run the performance test Execute below command in VS code terminal:  
+&nbsp;&nbsp;&nbsp;&nbsp;i) cd performance-tests  
+&nbsp;&nbsp;&nbsp;&nbsp;ii) k6 run order-creation-test.js  
+&nbsp;&nbsp;c.	To see the report in the browser , run the below command in VS code terminal:  
+&nbsp;&nbsp;&nbsp;&nbsp;report/summary.html  
+&nbsp;&nbsp;d.	Go back to root directory by below command in VS code terminal:    
+&nbsp;&nbsp;&nbsp;&nbsp;cd ..  
 
 # Note:   
 1.	GitHub Actions workflow runs successfully on push in the main branch.  
