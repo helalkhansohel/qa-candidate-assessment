@@ -33,7 +33,9 @@ cd ..
 ```  
 8.	 Finally, to install K6 for performance testing, put below command in the same VS code terminal:  
 ```bash  
+cd performance-tests
 winget install k6 --source winget  
+cd ..
 ```    
 9. Close and open the VS code IDE.  
 
