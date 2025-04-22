@@ -21,6 +21,7 @@ qa-candidate-assessment/
 cd ui-tests    
 npm install cypress typescript @cypress/webpack-preprocessor @babel/preset-typescript --save-dev  
 npm install -D @cypress/xpath   
+npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator
 cd ..  
 ```  
 7. Now to install the api-test dependency for Newman, put below commands in the same VS code terminal: 
