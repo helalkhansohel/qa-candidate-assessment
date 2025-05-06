@@ -1,4 +1,4 @@
-import '@cypress/xpath';
+
 class LoginPage {
     elements = {
       txtUsername: () => cy.get('input[id="user-name"]'),

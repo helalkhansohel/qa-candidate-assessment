@@ -1,14 +1,14 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2025-04-22T01:49:32.385Z",
-    "end": "2025-04-22T01:49:37.777Z",
-    "duration": 5392,
-    "testsRegistered": 1,
+    "start": "2025-05-06T03:26:39.646Z",
+    "end": "2025-05-06T03:26:45.232Z",
+    "duration": 5586,
+    "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "201c3dc0-49f3-4e49-b75e-4646e5994a32",
+      "uuid": "e54fa9c1-68de-4c29-8494-08ba941665bd",
       "title": "",
       "fullFile": "cypress\\e2e\\tests\\TestProductPurchase.spec.ts",
       "file": "cypress\\e2e\\tests\\TestProductPurchase.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "3836ba50-f280-4e28-8b8d-41389db7ea1e",
+          "uuid": "8237673f-792b-44c7-9a74-1cf47bf6aa02",
           "title": "Verify lowest & highest priced product putchase",
           "fullFile": "",
           "file": "",
@@ -35,10 +35,28 @@
           "afterHooks": [],
           "tests": [
             {
+              "title": "should find the list",
+              "fullTitle": "Verify lowest & highest priced product putchase should find the list",
+              "timedOut": null,
+              "duration": 2380,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "InventoryPage_1.default.getAllthePrice();",
+              "err": {},
+              "uuid": "d6247d70-2392-480d-ab0d-52bdb7b2c990",
+              "parentUUID": "8237673f-792b-44c7-9a74-1cf47bf6aa02",
+              "isHook": false,
+              "skipped": false
+            },
+            {
               "title": "should add the lowest & highest priced products to cart then checkout",
               "fullTitle": "Verify lowest & highest priced product putchase should add the lowest & highest priced products to cart then checkout",
               "timedOut": null,
-              "duration": 4781,
+              "duration": 2607,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +65,21 @@
               "context": null,
               "code": "//add the lowest & highest priced\nInventoryPage_1.default.sortProductsByPrice('Price (low to high)');\nInventoryPage_1.default.addFirstProductToCart(); // Add lowest priced product\nInventoryPage_1.default.sortProductsByPrice('Price (high to low)');\nInventoryPage_1.default.addFirstProductToCart(); // Add highest priced product\n//Checkout\nCartPage_1.default.gotoMyCart();\nCartPage_1.default.clickCheckout();\nCheckoutPage_1.default.fillUserInformation(storage_json_1.default.standard_user.fastname, storage_json_1.default.standard_user.lastname, storage_json_1.default.standard_user.postalcode);\nCheckoutPage_1.default.clickContinueButton();\nCheckoutPage_1.default.verifySelectedProducts(storage_json_1.default.products.lowestPricedProduct, storage_json_1.default.products.highestPricedProduct);\nCheckoutPage_1.default.clickFinishButton();\nCheckoutPage_1.default.VerifyProductOrderSuccessful('Thank you for your order!');",
               "err": {},
-              "uuid": "73f33dcd-bf9c-49c3-af56-530e64338424",
-              "parentUUID": "3836ba50-f280-4e28-8b8d-41389db7ea1e",
+              "uuid": "44e0f973-2ecb-48ec-9501-658115086e0f",
+              "parentUUID": "8237673f-792b-44c7-9a74-1cf47bf6aa02",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "73f33dcd-bf9c-49c3-af56-530e64338424"
+            "d6247d70-2392-480d-ab0d-52bdb7b2c990",
+            "44e0f973-2ecb-48ec-9501-658115086e0f"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 4781,
+          "duration": 4987,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
