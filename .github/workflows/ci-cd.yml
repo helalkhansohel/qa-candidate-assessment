@@ -62,31 +62,20 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: Install latest k6 (with ES6+ support)
+    - name: Install k6
       run: |
         sudo apt-get update
-        sudo apt-get install -y ca-certificates gnupg
-        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
-        echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
-        sudo apt-get update
-        sudo apt-get install -y k6
-        k6 version
+        sudo apt-get install -y ca-certificates
+        wget https://github.com/grafana/k6/releases/download/v0.50.0/k6-v0.50.0-linux-amd64.deb
+        sudo dpkg -i k6-v0.50.0-linux-amd64.deb || sudo apt-get install -f -y
 
-    - name: Run Load Test
-      # working-directory: ./performance-tests
-      run: k6 run performance-tests/tests/order/order-load-test.js
-
-    - name: Run Spike Test
-      working-directory: ./performance-tests
-      run: k6 run tests/order/order-spike-test.js
-
-    - name: Run Soak Test
-      working-directory: ./performance-tests
-      run: k6 run tests/order/order-soak-test.js --duration 5m
-
-    - name: Run Stress Test
-      working-directory: ./performance-tests
-      run: k6 run tests/order/order-stress-test.js
+    - name: Run k6 tests from project root
+      run: |
+        cd performance-tests
+        k6 run tests/order/order-load-test.js
+        k6 run tests/order/order-spike-test.js
+        k6 run tests/order/order-soak-test.js --duration 5m
+        k6 run tests/order/order-stress-test.js
 
     - name: Upload reports
       uses: actions/upload-artifact@v4
