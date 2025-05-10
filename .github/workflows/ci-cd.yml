@@ -61,7 +61,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
     - name: Install k6
       run: |
         sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
@@ -81,7 +80,7 @@ jobs:
     - name: Run Stress Test
       run: k6 run tests/order/order-stress-test.js
 
-    - name: Upload Reports
+    - name: Upload HTML Reports
       uses: actions/upload-artifact@v3
       with:
         name: performance-reports
