@@ -73,8 +73,8 @@ jobs:
         k6 version
 
     - name: Run Load Test
-      working-directory: ./performance-tests
-      run: k6 run tests/order/order-load-test.js
+      # working-directory: ./performance-tests
+      run: k6 run performance-tests/tests/order/order-load-test.js
 
     - name: Run Spike Test
       working-directory: ./performance-tests
