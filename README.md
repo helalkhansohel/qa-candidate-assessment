@@ -94,4 +94,4 @@ cd ..
 
 # Note:   
 1.	GitHub Actions workflow runs successfully on push in the main branch.  
-2.	For performance testing, I have not used world time duration and number of user.   
+2.	For performance testing, I have not used real world time duration and number of user.   
