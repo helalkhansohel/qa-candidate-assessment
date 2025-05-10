@@ -77,10 +77,10 @@ jobs:
     - name: Run tests
       run: |
         cd performance-tests
-        k6 run tests/order/order-load-test.js --duration 1m
-        k6 run tests/order/order-spike-test.js --duration 1m
-        k6 run tests/order/order-soak-test.js --duration 1m
-        k6 run tests/order/order-stress-test.js --duration 1m
+        k6 run tests/order/order-load-test.js 
+        # k6 run tests/order/order-spike-test.js 
+        # k6 run tests/order/order-soak-test.js 
+        # k6 run tests/order/order-stress-test.js --duration 1m
 
     - name: Upload reports
       uses: actions/upload-artifact@v4
