@@ -1,6 +1,6 @@
 import { soakScenarioConfiguration } from '../../config/scenarios/soak.js';
 import { orderThresholds } from '../../config/thresholds.js';
-import {createOrderTest} from '../../api/Order/order.js';
+import {createOrderTest} from '../../api/order/order.js';
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 
 export const options = {
