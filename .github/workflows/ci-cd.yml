@@ -62,7 +62,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     - name: Install k6
-      working-directory: ./performance-tests
+      
       run: |
         sudo apt-get update
         sudo apt-get install -y ca-certificates gnupg
@@ -73,16 +73,16 @@ jobs:
 
       
     - name: Run Load Test
-      run: k6 run tests/order/order-load-test.js
+      run: k6 run performance-tests/tests/order/order-load-test.js
 
     - name: Run Spike Test
-      run: k6 run tests/order/order-spike-test.js
+      run: k6 run performance-tests/tests/order/order-spike-test.js
 
     - name: Run Soak Test (short version)
-      run: k6 run tests/order/order-soak-test.js --duration 5m
+      run: k6 run performance-tests/tests/order/order-soak-test.js --duration 3m
 
     - name: Run Stress Test
-      run: k6 run tests/order/order-stress-test.js
+      run: k6 run performance-tests/tests/order/order-stress-test.js --duration 3m
 
     - name: Upload HTML Reports
       uses: actions/upload-artifact@v4
