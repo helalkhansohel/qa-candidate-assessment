@@ -1,0 +1,18 @@
+#To run each test separately: 
+k6 run tests/order/order-load-test.js
+k6 run tests/order/order-spike-test.js
+k6 run tests/order/order-soak-test.js
+k6 run tests/order/order-stress-test.js
+
+# To view specific report: 
+reports/order-spike-summary.html
+
+
+# Run all tests in parallel
+k6 run tests/auth/login-load.js &
+k6 run tests/orders/create-load.js &
+k6 run tests/payments/process-spike.js &
+wait
+
+# Generate combined report
+merge-reports reports/*.json > combined-report.html

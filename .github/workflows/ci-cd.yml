@@ -59,16 +59,30 @@ jobs:
     runs-on: ubuntu-latest
     needs: api-tests
     steps:
-      - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Install k6 (guaranteed working method)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ca-certificates
-          wget https://github.com/grafana/k6/releases/download/v0.50.0/k6-v0.50.0-linux-amd64.deb
-          sudo dpkg -i k6-v0.50.0-linux-amd64.deb || sudo apt-get install -f -y
-          k6 version  # Verify installation
+    - name: Install k6
+      run: |
+        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+        echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list
+        sudo apt-get update
+        sudo apt-get install k6
 
-      - name: Run performance tests
-        working-directory: ./performance-tests
-        run: k6 run order-creation-test.js
+    - name: Run Load Test
+      run: k6 run tests/order/order-load-test.js
+
+    - name: Run Spike Test
+      run: k6 run tests/order/order-spike-test.js
+
+    - name: Run Soak Test (short version)
+      run: k6 run tests/order/order-soak-test.js --duration 5m
+
+    - name: Run Stress Test
+      run: k6 run tests/order/order-stress-test.js
+
+    - name: Upload Reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: performance-reports
+        path: reports/
