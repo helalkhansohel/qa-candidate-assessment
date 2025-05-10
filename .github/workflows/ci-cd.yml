@@ -81,7 +81,7 @@ jobs:
 
     - name: Run Spike Test
       working-directory: ./performance-tests
-      run: k6 run tests/order/order-spike-test. || true
+      run: k6 run tests/order/order-spike-test.js || true
 
     # - name: Run Soak Test
     #   working-directory: ./performance-tests
