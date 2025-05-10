@@ -71,16 +71,25 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y k6
         k6 version
+
     - name: Create reports folder
       run: mkdir -p performance-tests/reports
 
-    - name: Run tests
-      run: |
-        cd performance-tests
-        k6 run tests/order/order-load-test.js || true
-        k6 run tests/order/order-spike-test.js || true
-        # k6 run tests/order/order-soak-test.js 
-        # k6 run tests/order/order-stress-test.js --duration 1m
+    - name: Run Load Test
+      working-directory: ./performance-tests
+      run: k6 run tests/order/order-load-test.js
+
+    - name: Run Spike Test
+      working-directory: ./performance-tests
+      run: k6 run tests/order/order-spike-test.js
+
+    # - name: Run Soak Test
+    #   working-directory: ./performance-tests
+    #   run: k6 run tests/order/order-soak-test.js --duration 5m
+
+    # - name: Run Stress Test
+    #   working-directory: ./performance-tests
+    #   run: k6 run tests/order/order-stress-test.js
 
     - name: Upload reports
       uses: actions/upload-artifact@v4
