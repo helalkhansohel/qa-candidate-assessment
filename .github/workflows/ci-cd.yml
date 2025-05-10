@@ -83,13 +83,13 @@ jobs:
       working-directory: ./performance-tests
       run: k6 run tests/order/order-spike-test.js || true
 
-    # - name: Run Soak Test
-    #   working-directory: ./performance-tests
-    #   run: k6 run tests/order/order-soak-test.js --duration 5m
+    - name: Run Soak Test
+      working-directory: ./performance-tests
+      run: k6 run tests/order/order-soak-test.js --duration 2m || true
 
-    # - name: Run Stress Test
-    #   working-directory: ./performance-tests
-    #   run: k6 run tests/order/order-stress-test.js
+    - name: Run Stress Test
+      working-directory: ./performance-tests
+      run: k6 run tests/order/order-stress-test.js
 
     - name: Upload reports
       uses: actions/upload-artifact@v4
