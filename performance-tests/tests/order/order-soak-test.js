@@ -7,14 +7,16 @@ export const options = {
     scenarios: {
         soak_test: {
             ...soakScenarioConfiguration,
-            exec: 'soakScenario'
+            exec: 'default'
         }
     },
     thresholds: orderThresholds
 };
 
-export function soakScenario() {
-    createOrderTest();
+
+export default function() {
+    createOrderTest(); 
+    
 }
 
 export function handleSummary(data) {
